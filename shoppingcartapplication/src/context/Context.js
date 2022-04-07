@@ -7,7 +7,7 @@ const Cart = createContext();
 faker.seed(50);
 
 const Context = ({ children }) => {
-    
+    //products == roberts
     const products = [...Array(20)].map(() => ({
         id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
@@ -24,6 +24,8 @@ const Context = ({ children }) => {
         products: products,
         cart: [],
       });
+
+
 
   return (
     (
