@@ -10,6 +10,7 @@ const Filters = () => {
     productState: { byStock, byFastDelivery, sort, byRating },
   } = CartState(); */
   const [rate, setRate] = useState(2);
+  
 
   // make state for rating
 
@@ -66,3 +67,5 @@ const Filters = () => {
 };
 
 export default Filters;
+
+//rating={rate} 

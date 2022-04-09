@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useReducer } from 'react';
 //import faker from "faker";
 import { faker } from '@faker-js/faker';
-import { cartReducer } from './Reducers';
+import { cartReducer, productReducer } from './Reducers';
 
 const Cart = createContext();
 faker.seed(50);
 
 const Context = ({ children }) => {
     //products == roberts
-    const products = [...Array(20)].map(() => ({
+    const products = [...Array(2)].map(() => ({
         id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
         price: faker.commerce.price(),
@@ -25,6 +25,12 @@ const Context = ({ children }) => {
         cart: [],
       });
 
+      const [productState, productDispatch] = useReducer(productReducer, {
+        byStock: false,
+        byFastDelivery: false,
+        byRating: 0,
+        searchQuery: "",
+      });
 
 
   return (
