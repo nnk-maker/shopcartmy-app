@@ -22,7 +22,7 @@ const PurchaseValidation = () => {
     setIsSubmit(true);
     //history.pushState("/success");
   };
-
+    //chances to modify
     useEffect(() => {
         console.log(formErrors);
         if (
@@ -50,11 +50,11 @@ const PurchaseValidation = () => {
     }
     if (!values.name) {
       errors.name = "name is required";
-    } else if (values.name.length < 4) {
+    } else if (values.name.length < 8) {
       errors.name =
-        "name must be more than 4 characters and combination of 3 letters";
-    } else if (values.name.length > 10) {
-      errors.name = "name cannot exceed more than 10 characters";
+        "name must be more than 8 characters";
+    } else if (values.name.length > 40) {
+      errors.name = "name cannot exceed more than 40 characters";
     } 
     if(!values.mobile.length){
       errors.mobile = "name is required and should be in numbers";
@@ -68,14 +68,14 @@ const PurchaseValidation = () => {
      {/*  <pre>{JSON.stringify(formValues, undefined, 2)}</pre> */}
 
         <Form onSubmit={handleSubmit} >
-        {
+        {/* {
           Object.keys(formErrors).length === 0 && isSubmit ? (
               <div >
                 <Link to ='/success'/>
               </div>
           ): (<pre> </pre>)
         
-        }
+        } */}
                 <h1> Payment Validation  Form</h1>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridName">
