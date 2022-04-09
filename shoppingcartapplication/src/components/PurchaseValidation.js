@@ -4,7 +4,7 @@ import { Link, Route, useNavigate } from 'react-router-dom';
 
 const PurchaseValidation = () => {
   const navigate = useNavigate();
-  const initialValues = { username: "", email: "", mobile:""};
+  const initialValues = { name: "", email: "", mobile:""};
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -49,9 +49,9 @@ const PurchaseValidation = () => {
       errors.email = "This is not a valid email format!";
     }
     if (!values.name) {
-      errors.username = "name is required";
+      errors.name = "name is required";
     } else if (values.name.length < 4) {
-      errors.username =
+      errors.name =
         "name must be more than 4 characters and combination of 3 letters";
     } else if (values.name.length > 10) {
       errors.name = "name cannot exceed more than 10 characters";

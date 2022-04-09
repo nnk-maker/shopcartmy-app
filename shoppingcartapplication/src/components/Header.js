@@ -16,7 +16,7 @@ const Header = () => {
 
     
     
-       <Navbar expand="lg" bg="dark" variant="dark" style={{ heoght: 80 }}>
+       <Navbar expand="lg" bg="dark" variant="dark" style={{ height: 80 }}>
         <Container>
             <Navbar.Brand href="#home">
                 <Link to="/">Shopping Cart</Link>
