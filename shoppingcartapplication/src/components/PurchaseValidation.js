@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Route, useNavigate } from 'react-router-dom';
 
-const AddressValidation = () => {
+const PurchaseValidation = () => {
+  const navigate = useNavigate();
   const initialValues = { username: "", email: "", mobile:""};
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -19,10 +20,17 @@ const AddressValidation = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    //history.pushState("/success");
   };
 
     useEffect(() => {
         console.log(formErrors);
+        if (
+          Object.values(formValues).some((value) => value !== "") &&
+          Object.values(formErrors).every((value) => value === "")
+        ) {
+          navigate("/success", { replace: true });
+        }
         if (Object.keys(formErrors).length === 0 && isSubmit) {
         console.log(formValues);
         }
@@ -58,7 +66,16 @@ const AddressValidation = () => {
   return (
     <div className="container">
      {/*  <pre>{JSON.stringify(formValues, undefined, 2)}</pre> */}
-        <Form onSubmit={handleSubmit} action="/success">
+
+        <Form onSubmit={handleSubmit} >
+        {
+          Object.keys(formErrors).length === 0 && isSubmit ? (
+              <div >
+                <Link to ='/success'/>
+              </div>
+          ): (<pre> </pre>)
+        
+        }
                 <h1> Payment Validation  Form</h1>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridName">
@@ -130,17 +147,15 @@ const AddressValidation = () => {
 
                 </Row>
 
-                <Form.Group className="mb-3" id="formGridCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Link to="/success">
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-                </Link>
+               
+                {/* <Link to="/success"> */}
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+              {/*   </Link> */}
         </Form>
     </div>
   );
 }
 
-export default AddressValidation
+export default PurchaseValidation
