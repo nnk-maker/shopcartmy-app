@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { CartState } from '../context/Context'
-import Cart from './Cart'
+
 import Rating from './Rating'
 
 export const SingleProduct = ({prod}) => {

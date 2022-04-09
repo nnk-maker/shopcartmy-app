@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { CartState } from "../context/Context";
+//import { CartState } from "../context/Context";
 import Rating from "./Rating";
 //import Rating from "./Rating";
 
