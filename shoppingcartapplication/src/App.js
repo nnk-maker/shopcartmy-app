@@ -8,7 +8,7 @@ import Home from './components/Home';
 import PurchaseValidation from './components/PurchaseValidation';
 import { Success } from './components/Success';
 
-function App() {
+function App()  {
   return (
     <BrowserRouter>
       <Header />
