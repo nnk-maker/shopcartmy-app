@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Navbar, Container, FormControl, Dropdown, Nav, Badge, Button } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaShoppingCart } from 'react-icons/fa'
@@ -6,15 +6,29 @@ import { Link } from "react-router-dom";
 import { CartState } from '../context/Context';
 import { AiFillDelete } from 'react-icons/ai';
 
+//Newly added
+//const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]'); //Newly added
+//New code from here
 const Header = () => {
+    
     const {
         state: { cart }, 
         dispatch           
     } = CartState();
-
-  return (
-
     
+
+    console.log("In Function Header");
+
+    useEffect(() => {
+        localStorage.setItem('productstemp', JSON.stringify(cart))
+      },[cart]); 
+    
+   /* useEffect(()=> {
+       console.log("In Function Header- useEffect");
+        localStorage.setItem('my-tier-list', JSON.stringify(cart));
+    });   */
+
+  return (  
     
        <Navbar expand="lg" bg="dark" variant="dark" style={{ height: 80 }}>
         <Container>
@@ -44,28 +58,29 @@ const Header = () => {
                         (
                             //Mapping the cart
                             <>
-                                {cart.map((prod) => (
-                                        <span className="cartitem" key={prod.id}>
-                                        <img
-                                            src={prod.image}
-                                            className="cartItemImg"
-                                            alt={prod.name}
-                                        />
-                                        <div className="cartItemDetail">
-                                            <span>{prod.name}</span>
-                                            <span>kr {prod.price.split(".")[0]}</span>
-                                        </div>
-                                        <AiFillDelete
-                                            fontSize="20px"
-                                            style={{ cursor: "pointer" }}
-                                            onClick={() =>
-                                            dispatch({
-                                                type: "REMOVE_FROM_CART",
-                                                payload: prod,
-                                            })
-                                            }
-                                        /> 
-                                        </span>
+                                {
+                                    cart.map((prod) => (
+                                            <span className="cartitem" key={prod.id}>
+                                            <img
+                                                src={prod.image}
+                                                className="cartItemImg"
+                                                alt={prod.name}
+                                            />
+                                            <div className="cartItemDetail">
+                                                <span>{prod.name}</span>
+                                                <span>kr {prod.price.split(".")[0]}</span>
+                                            </div>
+                                            <AiFillDelete
+                                                fontSize="20px"
+                                                style={{ cursor: "pointer" }}
+                                                onClick={() =>
+                                                dispatch({
+                                                    type: "REMOVE_FROM_CART",
+                                                    payload: prod,
+                                                })
+                                                }
+                                            /> 
+                                            </span>
                                     ))}
                                     <Link to="/cart">
                                         <Button style={{ width: "95%", margin: "0 10px" }}>

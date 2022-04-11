@@ -1,4 +1,4 @@
-import React from 'react'
+//import React, { useEffect } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { CartState } from '../context/Context'
 
@@ -9,8 +9,11 @@ export const SingleProduct = ({prod}) => {
         state: { cart },
         dispatch,
       } = CartState();
+     
+      console.log("in function - SingleProduct");
+      
       console.log(cart);
-    
+          
   return (
         <div className="products">
         <Card>
@@ -41,7 +44,7 @@ export const SingleProduct = ({prod}) => {
                             </Button>
                         ):(
                             <Button
-                            onClick={() =>
+                            onClick={() =>                              
                                 dispatch({
                                   type: "ADD_TO_CART",
                                   payload: prod,

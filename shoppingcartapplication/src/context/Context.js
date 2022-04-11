@@ -1,13 +1,14 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 //import faker from "faker";
 import { faker } from '@faker-js/faker';
 //import { cartReducer, productReducer } from './Reducers';
 import { cartReducer } from './Reducers';
 
 const Cart = createContext();
-faker.seed(50);
-
+faker.seed(5);
+//Newly added code
 const Context = ({ children }) => {
+
     //products == roberts
     const products = [...Array(5)].map(() => ({
         id: faker.datatype.uuid(),
@@ -18,13 +19,16 @@ const Context = ({ children }) => {
         fastDelivery: faker.datatype.boolean(),
         ratings: faker.random.arrayElement([1, 2, 3, 4, 5]),
       }));
-      console.log("we are here");
+      console.log("in function- Context");
       console.log(products);
+      //const cartFromLocalStorage = JSON.parse(localStorage.getItem('Cart') || '[]');
 
       const [state, dispatch] = useReducer(cartReducer, {
         products: products,
-        cart: [],
+        cart: [], 
       });
+
+      
 
       /* const [productState, productDispatch] = useReducer(productReducer, {
         byStock: false,

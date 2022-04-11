@@ -9,7 +9,7 @@ const Home = () => {
     console.log(products);
   return (
     <div className="home">
-       <Filters/>  
+      {/*  <Filters/>  */} 
         <div className="productContainer">
             {products.map((prod) => {
             return <SingleProduct prod={prod} key={prod.id} />

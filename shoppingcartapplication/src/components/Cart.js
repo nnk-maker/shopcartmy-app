@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom';
 import { CartState } from '../context/Context';
 import Rating from './Rating';
 
+//Newly added
+
 const Cart = () => {
     const {
         state: { cart },
         dispatch,
       } = CartState();
-    
+      
       const [total, setTotal] =  useState();
-
+      
     useEffect(() => {
+        
         setTotal(
         cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
         );
@@ -76,6 +79,7 @@ const Cart = () => {
             </ListGroup>
         </div>
          <div className="filters summary">
+           
             <span className="title">Subtotal ({cart.length}) items</span>
             <span style={{ fontWeight: 700, fontSize: 20 }}>Total: kr {total}</span>
             <Link to="/validation">
